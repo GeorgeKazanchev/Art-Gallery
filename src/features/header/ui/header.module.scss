@@ -1,0 +1,70 @@
+@import '/src/shared/ui/variables.scss';
+
+$theme-switcher-radius: 40px;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: $mobile-width;
+  height: 64px;
+  padding: 0 20px;
+  background-color: $primary-black;
+
+  @media (min-width: $tablet-width-narrow) {
+    height: 88px;
+  }
+
+  @media (min-width: $desktop-width) {
+    height: 80px;
+    padding: 0 100px;
+  }
+}
+
+.header-light {
+  background-color: $primary-white;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  fill: $primary-light-gray;
+}
+
+.logo-light {
+  fill: $primary-dark-gray;
+}
+
+.theme-switcher {
+  width: $theme-switcher-radius;
+  height: $theme-switcher-radius;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background-color: $secondary-black;
+  background-image: url('./assets/theme-light.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: #1b1b1b;
+  }
+}
+
+.theme-switcher-light {
+  background-color: $secondary-white;
+  background-image: url('./assets/theme-dark.svg');
+
+  &:hover,
+  &:active {
+    background-color: #f3f3f3;
+  }
+}

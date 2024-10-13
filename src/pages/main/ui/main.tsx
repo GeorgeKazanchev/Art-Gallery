@@ -1,7 +1,10 @@
 import React from 'react';
+import { Header } from '../../../features/header';
 
 export const Main: React.FC = () => {
-    return (
-        <div>Main Page</div>
-    );
+  return (
+    <React.Fragment>
+      <Header />
+    </React.Fragment>
+  );
 };
