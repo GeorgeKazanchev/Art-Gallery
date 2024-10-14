@@ -28,26 +28,27 @@ export const Pagination: React.FC<Props> = ({ pagesCount, activePage }) => {
         </svg>
       </a>
 
-      <ul className={styles.pages}>
-        <li className={styles.page}>
+      {/* TODO: Will be rewrited. It's just added for debug. */}
+      <ul className={`${styles.pages} ${isLight ? styles.pagesLight : ''}`}>
+        <li className={`${styles.page} ${styles.pageUnchecked}`}>
           <a className={`${styles.pageLink}`} href='#'>1</a>
         </li>
         <li className={styles.page}>
           &hellip;
         </li>
-        <li className={styles.page}>
+        <li className={`${styles.page} ${styles.pageUnchecked}`}>
           <a className={`${styles.pageLink}`} href='#'>3</a>
         </li>
-        <li className={`${styles.page} ${styles.pageActive}`}>
+        <li className={`${styles.page} ${styles.pageChecked} ${isLight ? styles.pageCheckedLight : ''}`}>
           <a className={`${styles.pageLink}`} href='#'>4</a>
         </li>
-        <li className={styles.page}>
+        <li className={`${styles.page} ${styles.pageUnchecked}`}>
           <a className={`${styles.pageLink}`} href='#'>5</a>
         </li>
         <li className={styles.page}>
           &hellip;
         </li>
-        <li className={styles.page}>
+        <li className={`${styles.page} ${styles.pageUnchecked}`}>
           <a className={`${styles.pageLink}`} href='#'>9</a>
         </li>
       </ul>

@@ -62,6 +62,7 @@ $page-border-radius: 4px;
 }
 
 .page {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,9 +71,26 @@ $page-border-radius: 4px;
   border-radius: $page-border-radius;
 }
 
-.page-active {
+.page-unchecked {
+  &:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $primary-dark-gray;
+  }
+}
+
+.page-checked {
   font: $font-paragraph-big-medium;
   background-color: $secondary-black;
+}
+
+.page-checked-light {
+  font: $primary-dark-gray;
+  background-color: rgba($primary-black, 0.05);
 }
 
 .page-link {
