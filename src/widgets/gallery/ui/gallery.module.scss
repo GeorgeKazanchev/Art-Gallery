@@ -1,0 +1,21 @@
+@import '/src/shared/ui/variables.scss';
+
+.gallery {
+  min-width: $mobile-width;
+  min-height: 100vh;
+  padding: 0 20px;
+  background-color: $primary-black;
+  
+  @media (min-width: $desktop-width) {
+    padding: 0 100px;
+  }
+}
+
+.gallery-light {
+  background-color: $primary-white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
