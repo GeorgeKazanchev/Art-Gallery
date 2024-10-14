@@ -6,16 +6,16 @@ $theme-switcher-radius: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: $mobile-width;
+  min-width: $mobile-min-width;
   height: 64px;
   padding: 0 20px;
   background-color: $primary-black;
 
-  @media (min-width: $tablet-width-narrow) {
+  @media (min-width: $tablet-narrow-min-width) {
     height: 88px;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $desktop-min-width) {
     height: 80px;
     padding: 0 100px;
   }

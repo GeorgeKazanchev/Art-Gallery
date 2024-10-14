@@ -1,12 +1,12 @@
 @import '/src/shared/ui/variables.scss';
 
 .gallery {
-  min-width: $mobile-width;
+  min-width: $mobile-min-width;
   min-height: 100vh;
   padding: 0 20px;
   background-color: $primary-black;
   
-  @media (min-width: $desktop-width) {
+  @media (min-width: $desktop-min-width) {
     padding: 0 100px;
   }
 }
