@@ -1,7 +1,7 @@
 import React from 'react';
 import Theme from '../../../shared/types/theme';
 import * as styles from './header.module.scss';
-import { isThemeLight } from '../helpers/helpers';
+import { isThemeLight } from '../../../shared/helpers/theme';
 
 export const Header: React.FC = () => {
   const theme = Theme.Dark;
