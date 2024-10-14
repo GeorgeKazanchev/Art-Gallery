@@ -12,7 +12,7 @@ export const Gallery: React.FC = () => {
         <PaintingsList />
         <Pagination
           pagesCount={9}
-          activePage={4}
+          checkedPage={4}
         />
       </div>
     </section>

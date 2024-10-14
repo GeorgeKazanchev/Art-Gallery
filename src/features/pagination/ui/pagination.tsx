@@ -1,20 +1,36 @@
 import React from 'react';
 import Theme from '../../../shared/types/theme';
 import * as styles from './pagination.module.scss';
+import { pagination } from '../helpers/pagination';
 import { isThemeLight } from '../../../shared/helpers/theme';
+import { ELLIPSIS, MAX_PAGES_SHOWN } from '../config/consts';
 
 type Props = {
   pagesCount: number,
-  activePage: number,
+  checkedPage: number,
 };
 
-export const Pagination: React.FC<Props> = ({ pagesCount, activePage }) => {
-  if (activePage < 0 || activePage > pagesCount) {
+//  TODO: Move theme to a Redux's store
+const theme = Theme.Dark;
+const isLight = isThemeLight(theme);
+
+const getPaginationPages = pagination(MAX_PAGES_SHOWN, ELLIPSIS);
+const getPageClassname = (page: number | string, checkedPage: number) => {  //  TODO: I think I need to refactor it...
+  let className = styles.page;
+  if (page === checkedPage) {
+    className += ` ${styles.pageChecked} ${isLight ? styles.pageCheckedLight : ''}`;
+  } else if (page !== ELLIPSIS) {
+    className += ` ${styles.pageUnchecked}`;
+  }
+  return className;
+};
+
+export const Pagination: React.FC<Props> = ({ pagesCount, checkedPage }) => {
+  if (checkedPage < 0 || checkedPage > pagesCount) {
     throw new RangeError('Active page in the pagination is incorrect');
   }
 
-  const theme = Theme.Dark;
-  const isLight = isThemeLight(theme);
+  const paginationPages = getPaginationPages(pagesCount, checkedPage);
 
   return (
     <div className={styles.pagination}>
@@ -28,29 +44,16 @@ export const Pagination: React.FC<Props> = ({ pagesCount, activePage }) => {
         </svg>
       </a>
 
-      {/* TODO: Will be rewrited. It's just added for debug. */}
       <ul className={`${styles.pages} ${isLight ? styles.pagesLight : ''}`}>
-        <li className={`${styles.page} ${styles.pageUnchecked}`}>
-          <a className={`${styles.pageLink}`} href='#'>1</a>
-        </li>
-        <li className={styles.page}>
-          &hellip;
-        </li>
-        <li className={`${styles.page} ${styles.pageUnchecked}`}>
-          <a className={`${styles.pageLink}`} href='#'>3</a>
-        </li>
-        <li className={`${styles.page} ${styles.pageChecked} ${isLight ? styles.pageCheckedLight : ''}`}>
-          <a className={`${styles.pageLink}`} href='#'>4</a>
-        </li>
-        <li className={`${styles.page} ${styles.pageUnchecked}`}>
-          <a className={`${styles.pageLink}`} href='#'>5</a>
-        </li>
-        <li className={styles.page}>
-          &hellip;
-        </li>
-        <li className={`${styles.page} ${styles.pageUnchecked}`}>
-          <a className={`${styles.pageLink}`} href='#'>9</a>
-        </li>
+        {paginationPages.map((page, index) => (       //  TODO: Change keys to something else
+          <li key={index} className={getPageClassname(page, checkedPage)}>
+            {page !== ELLIPSIS
+              ? (
+                <a className={`${styles.pageLink}`} href='#'>{page}</a>
+              )
+              : ELLIPSIS}
+          </li>
+        ))}
       </ul>
 
       <a
