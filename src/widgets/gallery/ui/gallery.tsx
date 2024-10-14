@@ -10,7 +10,10 @@ export const Gallery: React.FC = () => {
       <div className={styles.container}>
         <Search />
         <PaintingsList />
-        <Pagination />
+        <Pagination
+          pagesCount={9}
+          activePage={4}
+        />
       </div>
     </section>
   );

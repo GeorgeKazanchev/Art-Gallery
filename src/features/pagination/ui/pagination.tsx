@@ -3,7 +3,16 @@ import Theme from '../../../shared/types/theme';
 import * as styles from './pagination.module.scss';
 import { isThemeLight } from '../../../shared/helpers/theme';
 
-export const Pagination: React.FC = () => {
+type Props = {
+  pagesCount: number,
+  activePage: number,
+};
+
+export const Pagination: React.FC<Props> = ({ pagesCount, activePage }) => {
+  if (activePage < 0 || activePage > pagesCount) {
+    throw new RangeError('Active page in the pagination is incorrect');
+  }
+
   const theme = Theme.Dark;
   const isLight = isThemeLight(theme);
 
@@ -20,7 +29,27 @@ export const Pagination: React.FC = () => {
       </a>
 
       <ul className={styles.pages}>
-
+        <li className={styles.page}>
+          <a className={`${styles.pageLink}`} href='#'>1</a>
+        </li>
+        <li className={styles.page}>
+          &hellip;
+        </li>
+        <li className={styles.page}>
+          <a className={`${styles.pageLink}`} href='#'>3</a>
+        </li>
+        <li className={`${styles.page} ${styles.pageActive}`}>
+          <a className={`${styles.pageLink}`} href='#'>4</a>
+        </li>
+        <li className={styles.page}>
+          <a className={`${styles.pageLink}`} href='#'>5</a>
+        </li>
+        <li className={styles.page}>
+          &hellip;
+        </li>
+        <li className={styles.page}>
+          <a className={`${styles.pageLink}`} href='#'>9</a>
+        </li>
       </ul>
 
       <a
