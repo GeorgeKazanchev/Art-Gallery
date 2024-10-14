@@ -1,0 +1,50 @@
+@import '/src/shared/ui/variables.scss';
+
+$adjacent-page-size: 20px;
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 228px;
+  height: 24px;
+}
+
+.adjacent-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $adjacent-page-size;
+  height: $adjacent-page-size;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: $secondary-black;
+  }
+}
+
+.adjacent-page-light {
+  &:hover {
+    background-color: rgba($primary-black, 0.05);
+  }
+}
+
+.previous-page {
+  transform: rotate(180deg);
+}
+
+.pages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-link-icon {
+  fill: $primary-light-gray;
+}
+
+.page-link-icon-light {
+  fill: $primary-dark-gray;
+}
