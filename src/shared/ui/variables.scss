@@ -18,5 +18,9 @@ $accent-gold: #ab8956;
 $header-font-family: 'Cormorant SC', 'Times New Roman', Times, serif;
 $paragraph-font-family: 'Inter', Arial, Helvetica, sans-serif;
 
+$font-header-big: 500 16px/19.38px $header-font-family;
+$font-header-small: 500 12px/14.53px $header-font-family;
 $font-paragraph-big-light: 300 16px/1.4 $paragraph-font-family;
 $font-paragraph-big-medium: 500 16px/1.4 $paragraph-font-family;
+$font-caption-big: 700 12px/14.52px $paragraph-font-family;
+$font-caption-small: 700 8px/9.68px $paragraph-font-family;

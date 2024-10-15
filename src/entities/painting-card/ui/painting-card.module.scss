@@ -1,0 +1,126 @@
+@import '/src/shared/ui/variables.scss';
+
+$descr-vert-gap-mobile: 8px;
+$descr-vert-gap-tablet: 12px;
+$descr-vert-gap-desktop: 20px;
+
+$descr-hor-gap-mobile: 12px;
+$descr-hor-gap-desktop: 20px;
+
+$caption-width-mobile: 236px;
+$caption-width-tablet: 300px;
+
+$caption-height-mobile: 45px;
+$caption-height-tablet: 66px;
+$caption-height-desktop: 82px;
+
+.card {
+  position: relative;
+  width: 392px;
+  overflow: hidden;
+
+  &:hover .image {
+    transform: scale(1.05);
+  }
+
+  &:hover .description-main {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+
+  &:hover .description-additional {
+    opacity: 1.0;
+    transform: translateX(0);
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  transition: 0.3s transform;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: $caption-width-mobile;
+  height: $caption-height-mobile;
+  background-color: $primary-black;
+
+  @media (min-width: $tablet-narrow-min-width) {
+    width: $caption-width-tablet;
+    height: $caption-height-tablet;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    height: $caption-height-desktop;
+  }
+}
+
+.caption::before {
+  @media (min-width: $desktop-min-width) {
+    content: '';
+    position: absolute;
+    top: $descr-vert-gap-desktop;
+    bottom: $descr-vert-gap-desktop;
+    left: 0;
+    width: 2px;
+    background-color: $accent-gold;
+  }
+}
+
+.description-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.description {
+  position: absolute;
+  top: $descr-vert-gap-mobile;
+  left: $descr-hor-gap-mobile;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  transition: 0.3s all;
+
+  @media (min-width: $tablet-narrow-min-width) {
+    top: $descr-vert-gap-tablet;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    top: $descr-vert-gap-desktop;
+    left: $descr-hor-gap-desktop;
+  }
+}
+
+.description-additional {
+  opacity: 0;
+  transform: translateX(-$mobile-min-width);
+}
+
+.upper-line {
+  text-transform: uppercase;
+  font: $font-header-small;
+  color: $primary-light-gray;
+
+  @media (min-width: $tablet-narrow-min-width) {
+    font: $font-header-big;
+    color: $primary-white;
+  }
+}
+
+.lower-line {
+  text-transform: uppercase;
+  font: $font-caption-small;
+  color: $accent-gold;
+
+  @media (min-width: $tablet-narrow-min-width) {
+    font: $font-caption-big;
+  }
+}
+
+.name {
+  margin: 0;
+}
