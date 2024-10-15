@@ -1,11 +1,15 @@
 import React from 'react';
+import * as styles from './paintings-list.module.scss';
 import { PaintingCard } from '../../../../entities/painting-card';
-import { paintings } from '../../../../shared/mocks/paintings';
+import type { Painting } from '../../../../shared/types/painting';
 
-//  Temporary solution
-export const PaintingsList: React.FC = () => {
+type Props = {
+  paintings: Painting[],
+};
+
+export const PaintingsList: React.FC<Props> = ({ paintings }) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       {paintings.map((painting) =>
         <PaintingCard
           key={painting.id}

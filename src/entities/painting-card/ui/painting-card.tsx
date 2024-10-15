@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from './painting-card.module.scss';
-import { Painting } from '../../../shared/types/painting';
+import type { Painting } from '../../../shared/types/painting';
 
 type Props = {
   painting: Painting,
