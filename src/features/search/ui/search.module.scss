@@ -1,0 +1,16 @@
+@import '/src/shared/ui/variables.scss';
+
+.search-form {
+  margin-top: 27px;
+
+  @media (min-width: $tablet-narrow-min-width) {
+    align-self: flex-end;
+    margin-top: 44px;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 0;
+  border: none;
+}
