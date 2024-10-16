@@ -16,6 +16,7 @@ export const Header: React.FC = () => {
   const handleThemeSwitcherClick = () => {
     const newTheme = isLight ? Theme.Dark : Theme.Light;
     dispatch(setTheme(newTheme));
+    localStorage.setItem('theme', newTheme.toString());
   };
 
   return (

@@ -3,12 +3,21 @@ import { createRoot } from 'react-dom/client';
 import { App } from './ui/app';
 import { store } from './model/store';
 import { Provider } from 'react-redux';
+import { setTheme } from '../shared/model/theme-slice';
+
+import getThemeByName from './helpers/get-theme-by-name';
 
 import 'normalize.css';
 
 const root = document.querySelector('#root');
 if (!root) {
   throw new Error('Root not found');
+}
+
+const themeName = localStorage.getItem('theme');
+if (themeName) {
+  const theme = getThemeByName(themeName);
+  store.dispatch(setTheme(theme));
 }
 
 const container = createRoot(root);
