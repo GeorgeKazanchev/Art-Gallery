@@ -8,7 +8,9 @@
     "dev": "vite --port 5000",
     "build": "tsc -b && vite build",
     "eslint": "eslint",
-    "preview": "vite preview --port 5000"
+    "preview": "vite preview --port 5000",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "2.3.0",
@@ -21,6 +23,7 @@
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.2",
+    "gh-pages": "6.2.0",
     "sass": "1.79.5",
     "typescript": "5.0.4",
     "vite": "5.4.8"
