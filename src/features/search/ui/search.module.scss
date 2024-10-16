@@ -46,6 +46,21 @@ $reset-image-size: 8px;
   }
 }
 
+.input-light {
+  color: $primary-dark-gray;
+  background-color: $primary-white;
+  background-image: url('./assets/search-dark.svg');
+  outline: 1px solid $primary-light-gray;
+
+  &:focus {
+    outline: 1px solid $primary-dark-gray;
+  }
+
+  &::placeholder {
+    color: $secondary-gray;
+  }
+}
+
 .reset {
   display: none;
   position: absolute;
@@ -61,6 +76,10 @@ $reset-image-size: 8px;
   background-position: center;
   border: none;
   cursor: pointer;
+}
+
+.reset-light {
+  background-image: url('./assets/reset-dark.svg');
 }
 
 .input:not(:placeholder-shown)+.reset {

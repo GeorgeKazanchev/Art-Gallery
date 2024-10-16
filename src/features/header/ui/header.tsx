@@ -3,14 +3,14 @@ import * as styles from './header.module.scss';
 import { isThemeLight } from '../../../shared/helpers/theme';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { useAppDispatch } from '../../../shared/model/redux-hooks';
-import { setTheme } from '../../../shared/model/theme-slice';
+import { selectTheme, setTheme } from '../../../shared/model/theme-slice';
 import Theme from '../../../shared/types/theme';
 
 const desktopMinWidth = 1440;   //  It'll be better to get this width from the 'variables.scss'
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch();
-  const curTheme = useAppSelector((state) => state.theme.selectedTheme);
+  const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
   const handleThemeSwitcherClick = () => {
