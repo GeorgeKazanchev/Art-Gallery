@@ -10,4 +10,16 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     }
   },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        dir: 'dist/',
+        entryFileNames: 'index.js',
+        assetFileNames: 'style.css',
+        chunkFileNames: 'chunk.js',
+        manualChunks: undefined,
+      },
+    },
+  },
 });

@@ -10,7 +10,7 @@
     "eslint": "eslint",
     "preview": "vite preview --port 5000",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "2.3.0",
