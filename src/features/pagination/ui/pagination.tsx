@@ -1,29 +1,19 @@
 import React from 'react';
-import Theme from '../../../shared/types/theme';
 import * as styles from './pagination.module.scss';
-import { pagination } from '../helpers/pagination';
+import { useAppSelector } from '../../../shared/model/redux-hooks';
+import { selectTheme } from '../../../shared/model/theme-slice';
 import { isThemeLight } from '../../../shared/helpers/theme';
 import { ELLIPSIS, MAX_PAGES_SHOWN } from '../config/consts';
+
+import createPaginator from '../helpers/create-paginator';
+import getPageClassname from '../helpers/get-page-classname';
 
 type Props = {
   pagesCount: number,
   checkedPage: number,
 };
 
-//  TODO: Move theme to a Redux's store
-const theme = Theme.Dark;
-const isLight = isThemeLight(theme);
-
-const getPaginationPages = pagination(MAX_PAGES_SHOWN, ELLIPSIS);
-const getPageClassname = (page: number | string, checkedPage: number) => {  //  TODO: I think I need to refactor it...
-  let className = styles.page;
-  if (page === checkedPage) {
-    className += ` ${styles.pageChecked} ${isLight ? styles.pageCheckedLight : ''}`;
-  } else if (page !== ELLIPSIS) {
-    className += ` ${styles.pageUnchecked}`;
-  }
-  return className;
-};
+const getPaginationPages = createPaginator(MAX_PAGES_SHOWN, ELLIPSIS);
 
 export const Pagination: React.FC<Props> = ({ pagesCount, checkedPage }) => {
   if (checkedPage < 0 || checkedPage > pagesCount) {
@@ -31,6 +21,8 @@ export const Pagination: React.FC<Props> = ({ pagesCount, checkedPage }) => {
   }
 
   const paginationPages = getPaginationPages(pagesCount, checkedPage);
+  const curTheme = useAppSelector(selectTheme);
+  const isLight = isThemeLight(curTheme);
 
   return (
     <div className={styles.pagination}>
@@ -46,7 +38,7 @@ export const Pagination: React.FC<Props> = ({ pagesCount, checkedPage }) => {
 
       <ul className={`${styles.pages} ${isLight ? styles.pagesLight : ''}`}>
         {paginationPages.map((page, index) => (       //  TODO: Change keys to something else
-          <li key={index} className={getPageClassname(page, checkedPage)}>
+          <li key={index} className={getPageClassname(page, checkedPage, isLight)}>
             {page !== ELLIPSIS
               ? (
                 <a className={`${styles.pageLink}`} href='#'>{page}</a>

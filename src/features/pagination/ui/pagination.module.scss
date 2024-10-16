@@ -88,6 +88,12 @@ $page-border-radius: 4px;
   }
 }
 
+.page-unchecked-light {
+  &:hover::after {
+    background-color: $secondary-gray;
+  }
+}
+
 .page-checked {
   font: $font-paragraph-big-medium;
   background-color: $secondary-black;

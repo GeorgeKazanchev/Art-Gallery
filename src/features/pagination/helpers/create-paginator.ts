@@ -1,3 +1,5 @@
+import { ELLIPSIS } from '../config/consts';
+
 const { floor, min, max } = Math;
 const range = (low: number, high: number) => Array.from(
   {
@@ -6,7 +8,7 @@ const range = (low: number, high: number) => Array.from(
   (_, i) => i + low
 );
 
-export const pagination = (count: number, ellipsis = '&hellip;') => (total: number, curPage: number) => {
+const createPaginator = (count: number, ellipsis = ELLIPSIS) => (total: number, curPage: number) => {
   const start = max(1, min(curPage - floor((count - 3) / 2), total - count + 2));
   const end = min(total, max(curPage + floor((count - 2) / 2), count - 1));
   return [
@@ -15,3 +17,5 @@ export const pagination = (count: number, ellipsis = '&hellip;') => (total: numb
     ...(end < total - 1 ? [ellipsis, total] : end < total ? [total] : []),
   ];
 };
+
+export default createPaginator;
