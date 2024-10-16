@@ -10,6 +10,7 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     }
   },
+  base: process.env.NODE_ENV === 'production' ? '/FWT-Test-Task/' : '/',
   build: {
     outDir: 'dist',
     rollupOptions: {
