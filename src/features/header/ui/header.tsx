@@ -1,15 +1,23 @@
 import React from 'react';
-import Theme from '../../../shared/types/theme';
 import * as styles from './header.module.scss';
 import { isThemeLight } from '../../../shared/helpers/theme';
+import { useAppSelector } from '../../../shared/model/redux-hooks';
+import { useAppDispatch } from '../../../shared/model/redux-hooks';
+import { setTheme } from '../../../shared/model/theme-slice';
+import Theme from '../../../shared/types/theme';
 
-//  TODO: Move theme to a Redux's store
-const theme = Theme.Dark;
-const isLight = isThemeLight(theme);
-
-const desktopMinWidth = 1440;
+const desktopMinWidth = 1440;   //  It'll be better to get this width from the 'variables.scss'
 
 export const Header: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const curTheme = useAppSelector((state) => state.theme.selectedTheme);
+  const isLight = isThemeLight(curTheme);
+
+  const handleThemeSwitcherClick = () => {
+    const newTheme = isLight ? Theme.Dark : Theme.Light;
+    dispatch(setTheme(newTheme));
+  };
+
   return (
     <header className={`${styles.header} ${isLight ? styles.headerLight : ''}`}>
       <div className={styles.container}>
@@ -29,10 +37,11 @@ export const Header: React.FC = () => {
             )
         }
 
-        <button 
+        <button
           className={`${styles.themeSwitcher} ${isLight ? styles.themeSwitcherLight : ''}`}
           type='button'
           aria-label='Change theme'
+          onClick={handleThemeSwitcherClick}
         ></button>
       </div>
     </header>
