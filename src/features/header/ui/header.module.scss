@@ -57,6 +57,10 @@ $theme-switcher-radius: 40px;
   &:active {
     background-color: #1b1b1b;
   }
+
+  &:focus-visible {
+    border: 1px solid $primary-light-gray;
+  }
 }
 
 .theme-switcher-light {
@@ -66,5 +70,9 @@ $theme-switcher-radius: 40px;
   &:hover,
   &:active {
     background-color: #f3f3f3;
+  }
+
+  &:focus-visible {
+    border: 1px solid $primary-black;
   }
 }

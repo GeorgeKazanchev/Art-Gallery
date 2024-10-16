@@ -76,10 +76,18 @@ $reset-image-size: 8px;
   background-position: center;
   border: none;
   cursor: pointer;
+
+  &:focus-visible {
+    border: 1px solid $primary-light-gray;
+  }
 }
 
 .reset-light {
   background-image: url('./assets/reset-dark.svg');
+
+  &:focus-visible {
+    border: 1px solid $primary-black;
+  }
 }
 
 .input:not(:placeholder-shown)+.reset {
