@@ -5,6 +5,7 @@ export const Search: React.FC = () => {
   return (
     <form className={styles.searchForm} method='get' action='#'>
       <input className={styles.input} type='text' name='search' id='' placeholder='Painting title' />
+      <button className={styles.reset} type='reset'></button>
     </form>
   );
 };
