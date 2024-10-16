@@ -1,6 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './ui/app';
+import { store } from './model/store';
+import { Provider } from 'react-redux';
 
 import 'normalize.css';
 
@@ -12,6 +14,8 @@ if (!root) {
 const container = createRoot(root);
 container.render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>
 );
