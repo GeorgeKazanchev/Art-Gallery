@@ -5,7 +5,7 @@ export type Author = {
 
 export type Location = {
   id: number,
-  name: string,
+  location: string,
 };
 
 export type Painting = {

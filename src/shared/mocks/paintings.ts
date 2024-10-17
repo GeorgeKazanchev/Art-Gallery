@@ -12,7 +12,7 @@ export const paintings: Painting[] = [
     },
     location: {
       id: 1,
-      name: 'Louvre Museum',
+      location: 'Louvre Museum',
     }
   },
   {
@@ -26,7 +26,7 @@ export const paintings: Painting[] = [
     },
     location: {
       id: 2,
-      name: 'Van Gogh Museum',
+      location: 'Van Gogh Museum',
     }
   },
   {
@@ -40,7 +40,7 @@ export const paintings: Painting[] = [
     },
     location: {
       id: 3,
-      name: 'Tretyakov Gallery',
+      location: 'Tretyakov Gallery',
     }
   },
   {
@@ -54,7 +54,7 @@ export const paintings: Painting[] = [
     },
     location: {
       id: 4,
-      name: 'Thyssen-Bornemisza Museum',
+      location: 'Thyssen-Bornemisza Museum',
     }
   },
   {
@@ -68,7 +68,7 @@ export const paintings: Painting[] = [
     },
     location: {
       id: 5,
-      name: 'Metropolitan Museum of Art',
+      location: 'Metropolitan Museum of Art',
     }
   },
   {
@@ -82,7 +82,7 @@ export const paintings: Painting[] = [
     },
     location: {
       id: 6,
-      name: 'The Ostrogozhsk Museum',
+      location: 'The Ostrogozhsk Museum',
     }
   },
 ];

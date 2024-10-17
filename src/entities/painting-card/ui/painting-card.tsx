@@ -3,6 +3,7 @@ import * as styles from './painting-card.module.scss';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
 import { isThemeLight } from '../../../shared/model/is-theme-light';
+import { SERVER_BASE_URL } from '../../../shared/config/consts';
 import type { Painting } from '../../../shared/types/painting';
 
 type Props = {
@@ -15,7 +16,7 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
 
   return (
     <figure className={styles.card}>
-      <img className={styles.image} src={painting.imgUrl} alt={painting.name} />
+      <img className={styles.image} src={`${SERVER_BASE_URL}/${painting.imgUrl}`} alt={painting.name} />
       <figcaption className={`${styles.caption} ${isLight ? styles.captionLight : ''}`}>
         <div className={styles.descriptionWrapper}>
 
@@ -33,7 +34,7 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
               {painting.author.name}
             </span>
             <span className={`${styles.lowerLine} ${isLight ? styles.lowerLineLight : ''}`}>
-              {painting.location.name}
+              {painting.location.location}
             </span>
           </div>
 

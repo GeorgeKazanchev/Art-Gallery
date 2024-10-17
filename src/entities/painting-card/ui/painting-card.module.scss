@@ -14,8 +14,17 @@ $caption-height-desktop: 82px;
 .card {
   position: relative;
   width: 100%;
+  aspect-ratio: 1.5135;
   margin: 0;
   overflow: hidden;
+
+  @media (min-width: $tablet-narrow-min-width) {
+    aspect-ratio: 1.6;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    aspect-ratio: 1.5077;
+  }
 
   &:hover .image {
     transform: scale(1.05);
@@ -35,7 +44,7 @@ $caption-height-desktop: 82px;
 .image {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   transition: 0.3s transform;
 }
 
