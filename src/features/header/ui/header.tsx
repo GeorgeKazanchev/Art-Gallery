@@ -26,14 +26,14 @@ export const Header: React.FC = () => {
           isLight
             ? (
               <picture>
-                <source media={`(min-width: ${desktopMinWidth}px)`} srcSet='/assets/logo-large-dark.svg' />
-                <img src='/assets/logo-medium-dark.svg' alt='Логотип &laquo;Framework Team&raquo;' />
+                <source media={`(min-width: ${desktopMinWidth}px)`} srcSet='assets/logo-large-dark.svg' />
+                <img src='assets/logo-medium-dark.svg' alt='Логотип &laquo;Framework Team&raquo;' />
               </picture>
             )
             : (
               <picture>
-                <source media={`(min-width: ${desktopMinWidth}px)`} srcSet='/assets/logo-large-light.svg' />
-                <img src='/assets/logo-medium-light.svg' alt='Логотип &laquo;Framework Team&raquo;' />
+                <source media={`(min-width: ${desktopMinWidth}px)`} srcSet='assets/logo-large-light.svg' />
+                <img src='assets/logo-medium-light.svg' alt='Логотип &laquo;Framework Team&raquo;' />
               </picture>
             )
         }

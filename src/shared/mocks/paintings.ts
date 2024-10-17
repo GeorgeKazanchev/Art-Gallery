@@ -4,7 +4,7 @@ export const paintings: Painting[] = [
   {
     id: 1,
     name: 'Cascate di Tivoli',
-    imgUrl: '/assets/paintings/painting-1.jpg',
+    imgUrl: 'assets/paintings/painting-1.jpg',
     created: '1761',
     author: {
       id: 1,
@@ -18,7 +18,7 @@ export const paintings: Painting[] = [
   {
     id: 2,
     name: 'Portrait of Vincent van Gogh',
-    imgUrl: '/assets/paintings/painting-2.jpg',
+    imgUrl: 'assets/paintings/painting-2.jpg',
     created: '1886',
     author: {
       id: 2,
@@ -32,7 +32,7 @@ export const paintings: Painting[] = [
   {
     id: 3,
     name: 'Unequal Marriage',
-    imgUrl: '/assets/paintings/painting-3.jpg',
+    imgUrl: 'assets/paintings/painting-3.jpg',
     created: '1862',
     author: {
       id: 3,
@@ -46,7 +46,7 @@ export const paintings: Painting[] = [
   {
     id: 4,
     name: 'The happy Violinist',
-    imgUrl: '/assets/paintings/painting-4.jpg',
+    imgUrl: 'assets/paintings/painting-4.jpg',
     created: '1624',
     author: {
       id: 4,
@@ -60,7 +60,7 @@ export const paintings: Painting[] = [
   {
     id: 5,
     name: 'The Arcadian',
-    imgUrl: '/assets/paintings/painting-5.jpg',
+    imgUrl: 'assets/paintings/painting-5.jpg',
     created: '1834',
     author: {
       id: 5,
@@ -74,7 +74,7 @@ export const paintings: Painting[] = [
   {
     id: 6,
     name: 'Golfo di Napoli',
-    imgUrl: '/assets/paintings/painting-6.jpg',
+    imgUrl: 'assets/paintings/painting-6.jpg',
     created: '1845',
     author: {
       id: 6,
