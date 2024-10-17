@@ -2,7 +2,7 @@ import React from 'react';
 import * as styles from './painting-card.module.scss';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
-import { isThemeLight } from '../../../shared/helpers/theme';
+import { isThemeLight } from '../../../shared/model/is-theme-light';
 import type { Painting } from '../../../shared/types/painting';
 
 type Props = {

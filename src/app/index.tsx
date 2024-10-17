@@ -5,7 +5,7 @@ import { store } from './model/store';
 import { Provider } from 'react-redux';
 import { setTheme } from '../shared/model/theme-slice';
 
-import getThemeByName from './helpers/get-theme-by-name';
+import getThemeByName from './model/get-theme-by-name';
 
 import 'normalize.css';
 

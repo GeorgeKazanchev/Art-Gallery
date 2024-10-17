@@ -2,7 +2,7 @@ import React from 'react';
 import * as styles from './search.module.scss';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
-import { isThemeLight } from '../../../shared/helpers/theme';
+import { isThemeLight } from '../../../shared/model/is-theme-light';
 
 export const Search: React.FC = () => {
   const curTheme = useAppSelector(selectTheme);

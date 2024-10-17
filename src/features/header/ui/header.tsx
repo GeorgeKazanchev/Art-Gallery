@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from './header.module.scss';
-import { isThemeLight } from '../../../shared/helpers/theme';
+import { isThemeLight } from '../../../shared/model/is-theme-light';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { useAppDispatch } from '../../../shared/model/redux-hooks';
 import { selectTheme, setTheme } from '../../../shared/model/theme-slice';
