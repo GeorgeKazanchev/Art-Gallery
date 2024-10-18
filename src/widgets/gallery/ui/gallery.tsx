@@ -1,27 +1,41 @@
 import React from 'react';
 import * as styles from './gallery.module.scss';
+import getPaintingFromDto from '../../../shared/model/get-painting-from-dto';
 import { skipToken } from '@reduxjs/toolkit/query';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
 import { isThemeLight } from '../../../shared/model/is-theme-light';
-import { useGetAuthorsQuery, useGetLocationsQuery, useGetPaintingsQuery } from '../../../shared/api/api';
 import { Loader } from '../../../shared/ui';
 import { Message } from '../../../shared/ui';
 import { Search } from '../../../features/search';
 import { PaintingsList } from './paintings-list';
 import { Pagination } from '../../../features/pagination';
+import { PICTURES_PER_PAGE } from '../../../shared/config/consts';
 
-import getPaintingFromDto from '../../../shared/model/get-painting-from-dto';
+import {
+  useGetAllPaintingsQuery,
+  useGetAuthorsQuery,
+  useGetLocationsQuery,
+  useGetShownPaintingsQuery
+} from '../../../shared/api/api';
 
 export const Gallery: React.FC = () => {
-  const [currentPage, setCurrentPage] = React.useState(1); 
+  //  Количество страниц галереи зависит от общего числа картин.
+  //  Чтобы получить это число, с сервера загружаются все картины.
+  let totalPages = React.useRef(0);
+  const { data: allPaintings, isSuccess } = useGetAllPaintingsQuery();
+  if (isSuccess) {
+    totalPages.current = Math.ceil(allPaintings.length / PICTURES_PER_PAGE);
+  }
+
+  const [currentPage, setCurrentPage] = React.useState(1);
+
   const {
     data: paintingsDto = [],
     isLoading,
     isSuccess: isPaintingsLoaded,
     isError,
-  } = useGetPaintingsQuery(currentPage);
-
+  } = useGetShownPaintingsQuery(currentPage);
   const { data: authors = [] } = useGetAuthorsQuery(isPaintingsLoaded ? null : skipToken);
   const { data: locations = [] } = useGetLocationsQuery(isPaintingsLoaded ? null : skipToken);
   const paintings = paintingsDto.map((painting) => getPaintingFromDto(painting, authors, locations));
@@ -34,7 +48,6 @@ export const Gallery: React.FC = () => {
   };
 
   let content: React.ReactNode;
-
   if (isLoading) {
     content = (
       <div className={styles.loaderWrapper}>
@@ -49,7 +62,7 @@ export const Gallery: React.FC = () => {
           paintings={paintings}
         />
         <Pagination
-          pagesCount={9}
+          pagesCount={totalPages.current}
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
