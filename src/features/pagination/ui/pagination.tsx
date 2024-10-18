@@ -44,7 +44,17 @@ export const Pagination: React.FC<Props> = ({ pagesCount, currentPage, onPageCha
           <li key={index} className={getPageClassname(page, currentPage, isLight)}>
             {page !== ELLIPSIS
               ? (
-                <a className={`${styles.pageLink}`} href='#'>{page}</a>
+                <button
+                  className={styles.pageLink}
+                  type='button'
+                  onClick={() => {
+                    if (typeof page === 'number') {
+                      onPageChange(page);
+                    }
+                  }}
+                >
+                  {page}
+                </button>
               )
               : ELLIPSIS}
           </li>
