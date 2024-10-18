@@ -14,12 +14,13 @@ import { Pagination } from '../../../features/pagination';
 import getPaintingFromDto from '../../../shared/model/get-painting-from-dto';
 
 export const Gallery: React.FC = () => {
+  const [currentPage, setCurrentPage] = React.useState(1); 
   const {
     data: paintingsDto = [],
     isLoading,
     isSuccess: isPaintingsLoaded,
     isError,
-  } = useGetPaintingsQuery();
+  } = useGetPaintingsQuery(currentPage);
 
   const { data: authors = [] } = useGetAuthorsQuery(isPaintingsLoaded ? null : skipToken);
   const { data: locations = [] } = useGetLocationsQuery(isPaintingsLoaded ? null : skipToken);
@@ -27,6 +28,10 @@ export const Gallery: React.FC = () => {
 
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   let content: React.ReactNode;
 
@@ -45,7 +50,8 @@ export const Gallery: React.FC = () => {
         />
         <Pagination
           pagesCount={9}
-          currentPage={1}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
         />
       </div>
     );
