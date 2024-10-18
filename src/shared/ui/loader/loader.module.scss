@@ -1,0 +1,44 @@
+@import '/src/shared/ui/variables.scss';
+
+.loader {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  border: 3px solid $primary-white;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 56px;
+    height: 56px;
+    box-sizing: border-box;
+    border: 3px solid;
+    border-color: $accent-gold transparent;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.loader-light {
+  border-color: $primary-dark-gray;
+
+  &::after {
+    border-color: $accent-red transparent;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,18 @@
+@import '/src/shared/ui/variables.scss';
+
+.message {
+  margin: 0;
+  font: $font-paragraph-big-light;
+  color: $primary-light-gray;
+}
+
+.message-light {
+  color: $primary-dark-gray;
+}
+
+.description {
+  margin: 0;
+  margin-top: 12px;
+  font: $font-paragraph-base;
+  color: $secondary-gray;
+}
