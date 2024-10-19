@@ -1,1 +1,3 @@
-export { Gallery } from './ui/gallery';
+import Gallery from './ui/gallery';
+
+export default Gallery;

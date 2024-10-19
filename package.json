@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite --port 5000",
     "build": "tsc -b && vite build",
-    "eslint": "eslint",
+    "eslint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "preview": "vite preview --port 5000",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -23,10 +23,16 @@
   "devDependencies": {
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
     "@vitejs/plugin-react": "4.3.2",
+    "eslint": "8.57.1",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-plugin-import": "2.31.0",
     "gh-pages": "6.2.0",
     "sass": "1.79.5",
-    "typescript": "5.0.4",
+    "typescript": "5.5.4",
     "vite": "5.4.8"
   },
   "author": "George Kazanchev",

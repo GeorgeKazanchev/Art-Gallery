@@ -1,12 +1,14 @@
 import React from 'react';
+import isThemeLight from '../../../shared/model/is-theme-light';
+
 import * as styles from './pagination.module.scss';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
-import { isThemeLight } from '../../../shared/model/is-theme-light';
 import { ELLIPSIS, MAX_PAGES_SHOWN } from '../config/consts';
 
-import createPaginator from '../helpers/create-paginator';
-import getPageClassname from '../helpers/get-page-classname';
+import createPaginator from '../model/create-paginator';
+import getPageClassname from '../model/get-page-classname';
+import generateUniqueKey from '../../../shared/model/generate-unique-key';
 
 type Props = {
   pagesCount: number,
@@ -16,7 +18,9 @@ type Props = {
 
 const getPaginationPages = createPaginator(MAX_PAGES_SHOWN, ELLIPSIS);
 
-export const Pagination: React.FC<Props> = ({ pagesCount, currentPage, onPageChange }) => {
+export default function Pagination(
+  { pagesCount, currentPage, onPageChange }: Props,
+): React.ReactNode {
   if (currentPage < 0 || currentPage > pagesCount) {
     throw new RangeError('Active page in the pagination is incorrect');
   }
@@ -29,9 +33,9 @@ export const Pagination: React.FC<Props> = ({ pagesCount, currentPage, onPageCha
     <div className={styles.pagination}>
       <button
         className={`${styles.adjacentPage} ${styles.previousPage} ${isLight ? styles.adjacentPageLight : ''}`}
-        type='button'
+        type="button"
         disabled={currentPage === 1}
-        aria-label='Go to the previous page'
+        aria-label="Go to the previous page"
         onClick={() => onPageChange(currentPage - 1)}
       >
         <svg className={`${styles.pageLinkIcon} ${isLight ? styles.pageLinkIconLight : ''}`} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,13 +44,16 @@ export const Pagination: React.FC<Props> = ({ pagesCount, currentPage, onPageCha
       </button>
 
       <ul className={`${styles.pages} ${isLight ? styles.pagesLight : ''}`}>
-        {paginationPages.map((page, index) => (       //  TODO: Change keys to something else
-          <li key={index} className={getPageClassname(page, currentPage, isLight)}>
+        {paginationPages.map((page, index) => (
+          <li
+            key={generateUniqueKey(index.toString())}
+            className={getPageClassname(page, currentPage, isLight)}
+          >
             {page !== ELLIPSIS
               ? (
                 <button
                   className={styles.pageLink}
-                  type='button'
+                  type="button"
                   onClick={() => {
                     if (typeof page === 'number') {
                       onPageChange(page);
@@ -63,9 +70,9 @@ export const Pagination: React.FC<Props> = ({ pagesCount, currentPage, onPageCha
 
       <button
         className={`${styles.adjacentPage} ${isLight ? styles.adjacentPageLight : ''}`}
-        type='button'
+        type="button"
         disabled={currentPage === pagesCount}
-        aria-label='Go to the next page'
+        aria-label="Go to the next page"
         onClick={() => onPageChange(currentPage + 1)}
       >
         <svg className={`${styles.pageLinkIcon} ${isLight ? styles.pageLinkIconLight : ''}`} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,4 +81,4 @@ export const Pagination: React.FC<Props> = ({ pagesCount, currentPage, onPageCha
       </button>
     </div>
   );
-};
+}

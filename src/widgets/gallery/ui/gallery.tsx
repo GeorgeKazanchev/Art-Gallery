@@ -1,33 +1,35 @@
 import React from 'react';
-import * as styles from './gallery.module.scss';
-import getPaintingFromDto from '../../../shared/model/get-painting-from-dto';
 import { skipToken } from '@reduxjs/toolkit/query';
+
+import Search from '../../../features/search';
+import PaintingsList from './paintings-list';
+import Pagination from '../../../features/pagination';
+import isThemeLight from '../../../shared/model/is-theme-light';
+import getPaintingFromDto from '../../../shared/model/get-painting-from-dto';
+import * as styles from './gallery.module.scss';
+
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
-import { isThemeLight } from '../../../shared/model/is-theme-light';
-import { Loader } from '../../../shared/ui';
-import { Message } from '../../../shared/ui';
-import { Search } from '../../../features/search';
-import { PaintingsList } from './paintings-list';
-import { Pagination } from '../../../features/pagination';
+import { Loader, Message } from '../../../shared/ui';
 import { PICTURES_PER_PAGE } from '../../../shared/config/consts';
 
 import {
   useGetAllPaintingsQuery,
   useGetAuthorsQuery,
   useGetLocationsQuery,
-  useGetShownPaintingsQuery
+  useGetShownPaintingsQuery,
 } from '../../../shared/api/api';
 
-export const Gallery: React.FC = () => {
+export default function Gallery(): React.ReactNode {
   //  Количество страниц галереи зависит от общего числа картин.
   //  Чтобы получить это число, с сервера загружаются все картины.
-  let totalPages = React.useRef(0);
+  const totalPages = React.useRef(0);
   const { data: allPaintings, isSuccess } = useGetAllPaintingsQuery();
   if (isSuccess) {
     totalPages.current = Math.ceil(allPaintings.length / PICTURES_PER_PAGE);
   }
 
+  const [searchQuery] = React.useState('');
   const [currentPage, setCurrentPage] = React.useState(1);
 
   const {
@@ -38,7 +40,9 @@ export const Gallery: React.FC = () => {
   } = useGetShownPaintingsQuery(currentPage);
   const { data: authors = [] } = useGetAuthorsQuery(isPaintingsLoaded ? null : skipToken);
   const { data: locations = [] } = useGetLocationsQuery(isPaintingsLoaded ? null : skipToken);
-  const paintings = paintingsDto.map((painting) => getPaintingFromDto(painting, authors, locations));
+  const paintings = paintingsDto.map(
+    (painting) => getPaintingFromDto(painting, authors, locations),
+  );
 
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
@@ -57,7 +61,9 @@ export const Gallery: React.FC = () => {
   } else if (isPaintingsLoaded) {
     content = (
       <div className={styles.container}>
-        <Search />
+        <Search
+          searchQuery={searchQuery}
+        />
         <PaintingsList
           paintings={paintings}
         />
@@ -72,8 +78,8 @@ export const Gallery: React.FC = () => {
     content = (
       <div className={styles.errorWrapper}>
         <Message
-          message='Connection error'
-          description='Please try again later'
+          message="Connection error"
+          description="Please try again later"
           isLight={isLight}
         />
       </div>
@@ -81,11 +87,9 @@ export const Gallery: React.FC = () => {
   }
 
   return (
-    <React.Fragment>
-      <section className={`${styles.gallery} ${isLight ? styles.galleryLight : ''}`}>
-        <h2 className={styles.visuallyHidden}>Gallery</h2>
-        {content}
-      </section>
-    </React.Fragment>
+    <section className={`${styles.gallery} ${isLight ? styles.galleryLight : ''}`}>
+      <h2 className={styles.visuallyHidden}>Gallery</h2>
+      {content}
+    </section>
   );
-};
+}

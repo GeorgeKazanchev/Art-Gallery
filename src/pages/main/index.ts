@@ -1,1 +1,3 @@
-export { Main } from './ui/main';
+import Main from './ui/main';
+
+export default Main;

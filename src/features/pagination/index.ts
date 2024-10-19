@@ -1,1 +1,3 @@
-export { Pagination } from './ui/pagination';
+import Pagination from './ui/pagination';
+
+export default Pagination;

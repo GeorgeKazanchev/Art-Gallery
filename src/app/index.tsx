@@ -1,11 +1,12 @@
-import { StrictMode } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './ui/app';
-import { store } from './model/store';
 import { Provider } from 'react-redux';
-import { setTheme } from '../shared/model/theme-slice';
 
+import App from './ui/app';
 import getThemeByName from './model/get-theme-by-name';
+
+import { store } from './model/store';
+import { setTheme } from '../shared/model/theme-slice';
 
 import 'normalize.css';
 
@@ -22,9 +23,9 @@ if (themeName) {
 
 const container = createRoot(root);
 container.render(
-  <StrictMode>
+  <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </StrictMode>
+  </React.StrictMode>,
 );

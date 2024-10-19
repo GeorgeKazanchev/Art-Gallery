@@ -1,12 +1,12 @@
 import React from 'react';
-import { Header } from '../../../features/header';
-import { Gallery } from '../../../widgets/gallery';
+import Header from '../../../features/header';
+import Gallery from '../../../widgets/gallery';
 
-export const Main: React.FC = () => {
+export default function Main(): React.ReactNode {
   return (
-    <React.Fragment>
+    <>
       <Header />
       <Gallery />
-    </React.Fragment>
+    </>
   );
-};
+}

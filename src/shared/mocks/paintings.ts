@@ -1,6 +1,6 @@
 import type { Painting } from '../types/painting';
 
-export const paintings: Painting[] = [
+const paintings: Painting[] = [
   {
     id: 1,
     name: 'Cascate di Tivoli',
@@ -13,7 +13,7 @@ export const paintings: Painting[] = [
     location: {
       id: 1,
       location: 'Louvre Museum',
-    }
+    },
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const paintings: Painting[] = [
     location: {
       id: 2,
       location: 'Van Gogh Museum',
-    }
+    },
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ export const paintings: Painting[] = [
     location: {
       id: 3,
       location: 'Tretyakov Gallery',
-    }
+    },
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ export const paintings: Painting[] = [
     location: {
       id: 4,
       location: 'Thyssen-Bornemisza Museum',
-    }
+    },
   },
   {
     id: 5,
@@ -69,7 +69,7 @@ export const paintings: Painting[] = [
     location: {
       id: 5,
       location: 'Metropolitan Museum of Art',
-    }
+    },
   },
   {
     id: 6,
@@ -83,6 +83,8 @@ export const paintings: Painting[] = [
     location: {
       id: 6,
       location: 'The Ostrogozhsk Museum',
-    }
+    },
   },
 ];
+
+export default paintings;

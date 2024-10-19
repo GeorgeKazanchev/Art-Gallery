@@ -1,1 +1,3 @@
-export { PaintingCard } from './ui/painting-card';
+import PaintingCard from './ui/painting-card';
+
+export default PaintingCard;

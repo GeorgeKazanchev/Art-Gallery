@@ -62,7 +62,7 @@ $reset-image-size: 8px;
 }
 
 .reset {
-  display: none;
+  display: block;
   position: absolute;
   top: calc(50% - $reset-btn-size / 2);
   right: 12px;
@@ -88,8 +88,4 @@ $reset-image-size: 8px;
   &:focus-visible {
     border: 1px solid $primary-black;
   }
-}
-
-.input:not(:placeholder-shown)+.reset {
-  display: block;
 }

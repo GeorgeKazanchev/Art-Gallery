@@ -1,8 +1,9 @@
 import React from 'react';
+import isThemeLight from '../../../shared/model/is-theme-light';
+
 import * as styles from './painting-card.module.scss';
 import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
-import { isThemeLight } from '../../../shared/model/is-theme-light';
 import { SERVER_BASE_URL } from '../../../shared/config/consts';
 import type { Painting } from '../../../shared/types/painting';
 
@@ -10,7 +11,7 @@ type Props = {
   painting: Painting,
 };
 
-export const PaintingCard: React.FC<Props> = ({ painting }) => {
+export default function PaintingCard({ painting }: Props): React.ReactNode {
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
@@ -20,18 +21,18 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
     <figure
       className={styles.card}
       title={(
-        `Name: ${painting.name}\n` +
-        `Created: ${painting.created}\n` +
-        `Author: ${painting.author.name}\n` +
-        `Location: ${painting.location.location}`
+        `Name: ${painting.name}\n`
+        + `Created: ${painting.created}\n`
+        + `Author: ${painting.author.name}\n`
+        + `Location: ${painting.location.location}`
       )}
     >
       <div
-        style={{display: isImageLoaded ? 'none' : 'block'}}
+        style={{ display: isImageLoaded ? 'none' : 'block' }}
         className={`${styles.imageLoader} ${isLight ? styles.imageLoaderLight : ''}`}
       />
       <img
-        style={{display: isImageLoaded ? 'block' : 'none'}}
+        style={{ display: isImageLoaded ? 'block' : 'none' }}
         onLoad={() => setIsImageLoaded(true)}
         className={styles.image}
         src={`${SERVER_BASE_URL}/${painting.imgUrl}`}
@@ -62,4 +63,4 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
       </figcaption>
     </figure>
   );
-};
+}

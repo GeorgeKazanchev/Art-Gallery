@@ -1,1 +1,3 @@
-export { PaintingsList } from './paintings-list';
+import PaintingsList from './paintings-list';
+
+export default PaintingsList;
