@@ -13,9 +13,12 @@ $caption-height-desktop: 82px;
 
 .card {
   position: relative;
+  display: flex;
+  justify-content: center;
   width: 100%;
   aspect-ratio: 1.5135;
   margin: 0;
+  box-sizing: border-box;
   overflow: hidden;
 
   @media (min-width: $tablet-narrow-min-width) {
@@ -43,8 +46,8 @@ $caption-height-desktop: 82px;
 
 .image {
   display: block;
+  align-self: center;
   width: 100%;
-  height: 100%;
   transition: 0.3s transform;
 }
 
@@ -98,10 +101,13 @@ $caption-height-desktop: 82px;
 .description {
   position: absolute;
   top: $descr-vert-gap-mobile;
-  left: $descr-hor-gap-mobile;
   display: flex;
   flex-direction: column;
   row-gap: 4px;
+  width: 100%;
+  padding: 0 $descr-hor-gap-mobile;
+  box-sizing: border-box;
+  text-wrap: nowrap;
   transition: 0.3s all;
 
   @media (min-width: $tablet-narrow-min-width) {
@@ -110,13 +116,19 @@ $caption-height-desktop: 82px;
 
   @media (min-width: $desktop-min-width) {
     top: $descr-vert-gap-desktop;
-    left: $descr-hor-gap-desktop;
+    padding: 0 $descr-hor-gap-desktop;
   }
 }
 
 .description-additional {
   opacity: 0;
   transform: translateX(-$mobile-min-width);
+}
+
+.upper-line,
+.lower-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .upper-line {

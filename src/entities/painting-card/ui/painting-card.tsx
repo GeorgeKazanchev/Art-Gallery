@@ -15,7 +15,15 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
   const isLight = isThemeLight(curTheme);
 
   return (
-    <figure className={styles.card}>
+    <figure
+      className={styles.card}
+      title={(
+        `Name: ${painting.name}\n` +
+        `Created: ${painting.created}\n` +
+        `Author: ${painting.author.name}\n` +
+        `Location: ${painting.location.location}`
+      )}
+    >
       <img className={styles.image} src={`${SERVER_BASE_URL}/${painting.imgUrl}`} alt={painting.name} />
       <figcaption className={`${styles.caption} ${isLight ? styles.captionLight : ''}`}>
         <div className={styles.descriptionWrapper}>
