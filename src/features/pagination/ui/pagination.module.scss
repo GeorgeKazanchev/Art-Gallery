@@ -59,6 +59,18 @@ $page-border-radius: 4px;
   fill: $primary-dark-gray;
 }
 
+.adjacent-page:disabled {
+  .page-link-icon {
+    fill: $primary-dark-gray;
+  }
+}
+
+.adjacent-page-light:disabled {
+  .page-link-icon {
+    fill: $primary-light-gray;
+  }
+}
+
 .pages {
   display: flex;
   justify-content: space-between;
