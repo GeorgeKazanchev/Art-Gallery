@@ -14,6 +14,8 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
+  const [isImageLoaded, setIsImageLoaded] = React.useState(false);
+
   return (
     <figure
       className={styles.card}
@@ -24,7 +26,17 @@ export const PaintingCard: React.FC<Props> = ({ painting }) => {
         `Location: ${painting.location.location}`
       )}
     >
-      <img className={styles.image} src={`${SERVER_BASE_URL}/${painting.imgUrl}`} alt={painting.name} />
+      <div
+        style={{display: isImageLoaded ? 'none' : 'block'}}
+        className={`${styles.imageLoader} ${isLight ? styles.imageLoaderLight : ''}`}
+      />
+      <img
+        style={{display: isImageLoaded ? 'block' : 'none'}}
+        onLoad={() => setIsImageLoaded(true)}
+        className={styles.image}
+        src={`${SERVER_BASE_URL}/${painting.imgUrl}`}
+        alt={painting.name}
+      />
       <figcaption className={`${styles.caption} ${isLight ? styles.captionLight : ''}`}>
         <div className={styles.descriptionWrapper}>
 

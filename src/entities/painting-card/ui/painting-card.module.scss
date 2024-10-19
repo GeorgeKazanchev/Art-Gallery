@@ -51,6 +51,16 @@ $caption-height-desktop: 82px;
   transition: 0.3s transform;
 }
 
+.image-loader {
+  width: 100%;
+  background-color: $primary-dark-gray;
+  background-image: linear-gradient(45deg, $primary-black, $primary-dark-gray);
+}
+
+.image-loader-light {
+  background-image: linear-gradient(45deg, $primary-dark-gray, $primary-light-gray);
+}
+
 .caption {
   position: absolute;
   bottom: 0;
