@@ -29,7 +29,7 @@ export default function Gallery(): React.ReactNode {
     totalPages.current = Math.ceil(allPaintings.length / PICTURES_PER_PAGE);
   }
 
-  const [searchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState('');
   const [currentPage, setCurrentPage] = React.useState(1);
 
   const {
@@ -47,6 +47,10 @@ export default function Gallery(): React.ReactNode {
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
+  const handleSearchQueryChange = (searchQuery: string) => {
+    setSearchQuery(searchQuery);
+  };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -63,6 +67,7 @@ export default function Gallery(): React.ReactNode {
       <div className={styles.container}>
         <Search
           searchQuery={searchQuery}
+          onSearchQueryChange={handleSearchQueryChange}
         />
         <PaintingsList
           paintings={paintings}

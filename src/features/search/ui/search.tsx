@@ -7,9 +7,10 @@ import { selectTheme } from '../../../shared/model/theme-slice';
 
 type Props = {
   searchQuery: string,
+  onSearchQueryChange: (searchQuery: string) => void,
 };
 
-export default function Search({ searchQuery }: Props): React.ReactNode {
+export default function Search({ searchQuery, onSearchQueryChange }: Props): React.ReactNode {
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
@@ -27,6 +28,9 @@ export default function Search({ searchQuery }: Props): React.ReactNode {
           name="search"
           id="search"
           placeholder="Painting title"
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
+            onSearchQueryChange(evt.target.value);
+          }}
         />
       </label>
       <input
@@ -35,6 +39,9 @@ export default function Search({ searchQuery }: Props): React.ReactNode {
         type="reset"
         value=""
         aria-label="Clear a search field"
+        onClick={() => {
+          onSearchQueryChange("");
+        }}
       />
     </form>
   );
