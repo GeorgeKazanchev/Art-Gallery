@@ -23,10 +23,6 @@ export default function Pagination({
   currentPage,
   onPageChange,
 }: Props): React.ReactNode {
-  if (currentPage < 0 || currentPage > pagesCount) {
-    throw new RangeError('Active page in the pagination is incorrect');
-  }
-
   const paginationPages = getPaginationPages(pagesCount, currentPage);
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);

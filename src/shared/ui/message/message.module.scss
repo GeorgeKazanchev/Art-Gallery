@@ -1,5 +1,11 @@
 @import '/src/shared/ui/variables.scss';
 
+.message,
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .message {
   margin: 0;
   font: $font-paragraph-big-light;
