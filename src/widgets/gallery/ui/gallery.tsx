@@ -38,17 +38,21 @@ export default function Gallery(): React.ReactNode {
     isSuccess: isPaintingsLoaded,
     isError,
   } = useGetShownPaintingsQuery(currentPage);
-  const { data: authors = [] } = useGetAuthorsQuery(isPaintingsLoaded ? null : skipToken);
-  const { data: locations = [] } = useGetLocationsQuery(isPaintingsLoaded ? null : skipToken);
-  const paintings = paintingsDto.map(
-    (painting) => getPaintingFromDto(painting, authors, locations),
+  const { data: authors = [] } = useGetAuthorsQuery(
+    isPaintingsLoaded ? null : skipToken,
+  );
+  const { data: locations = [] } = useGetLocationsQuery(
+    isPaintingsLoaded ? null : skipToken,
+  );
+  const paintings = paintingsDto.map((painting) =>
+    getPaintingFromDto(painting, authors, locations),
   );
 
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
-  const handleSearchQueryChange = (searchQuery: string) => {
-    setSearchQuery(searchQuery);
+  const handleSearchQueryChange = (query: string) => {
+    setSearchQuery(query);
   };
 
   const handlePageChange = (page: number) => {
@@ -69,9 +73,7 @@ export default function Gallery(): React.ReactNode {
           searchQuery={searchQuery}
           onSearchQueryChange={handleSearchQueryChange}
         />
-        <PaintingsList
-          paintings={paintings}
-        />
+        <PaintingsList paintings={paintings} />
         <Pagination
           pagesCount={totalPages.current}
           currentPage={currentPage}
@@ -92,7 +94,9 @@ export default function Gallery(): React.ReactNode {
   }
 
   return (
-    <section className={`${styles.gallery} ${isLight ? styles.galleryLight : ''}`}>
+    <section
+      className={`${styles.gallery} ${isLight ? styles.galleryLight : ''}`}
+    >
       <h2 className={styles.visuallyHidden}>Gallery</h2>
       {content}
     </section>

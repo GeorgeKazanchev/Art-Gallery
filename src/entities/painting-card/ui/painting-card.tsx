@@ -8,7 +8,7 @@ import { SERVER_BASE_URL } from '../../../shared/config/consts';
 import type { Painting } from '../../../shared/types/painting';
 
 type Props = {
-  painting: Painting,
+  painting: Painting;
 };
 
 export default function PaintingCard({ painting }: Props): React.ReactNode {
@@ -21,12 +21,12 @@ export default function PaintingCard({ painting }: Props): React.ReactNode {
     <li>
       <figure
         className={styles.card}
-        title={(
-          `Name: ${painting.name}\n`
-          + `Created: ${painting.created}\n`
-          + `Author: ${painting.author.name}\n`
-          + `Location: ${painting.location.location}`
-        )}
+        title={
+          `Name: ${painting.name}\n` +
+          `Created: ${painting.created}\n` +
+          `Author: ${painting.author.name}\n` +
+          `Location: ${painting.location.location}`
+        }
       >
         <div
           style={{ display: isImageLoaded ? 'none' : 'block' }}
@@ -39,27 +39,37 @@ export default function PaintingCard({ painting }: Props): React.ReactNode {
           src={`${SERVER_BASE_URL}/${painting.imgUrl}`}
           alt={painting.name}
         />
-        <figcaption className={`${styles.caption} ${isLight ? styles.captionLight : ''}`}>
+        <figcaption
+          className={`${styles.caption} ${isLight ? styles.captionLight : ''}`}
+        >
           <div className={styles.descriptionWrapper}>
-
             <div className={`${styles.description} ${styles.descriptionMain}`}>
-              <h2 className={`${styles.upperLine} ${styles.name} ${isLight ? styles.upperLineLight : ''}`}>
+              <h2
+                className={`${styles.upperLine} ${styles.name} ${isLight ? styles.upperLineLight : ''}`}
+              >
                 {painting.name}
               </h2>
-              <span className={`${styles.lowerLine} ${isLight ? styles.lowerLineLight : ''}`}>
+              <span
+                className={`${styles.lowerLine} ${isLight ? styles.lowerLineLight : ''}`}
+              >
                 {painting.created}
               </span>
             </div>
 
-            <div className={`${styles.description} ${styles.descriptionAdditional}`}>
-              <span className={`${styles.upperLine} ${isLight ? styles.upperLineLight : ''}`}>
+            <div
+              className={`${styles.description} ${styles.descriptionAdditional}`}
+            >
+              <span
+                className={`${styles.upperLine} ${isLight ? styles.upperLineLight : ''}`}
+              >
                 {painting.author.name}
               </span>
-              <span className={`${styles.lowerLine} ${isLight ? styles.lowerLineLight : ''}`}>
+              <span
+                className={`${styles.lowerLine} ${isLight ? styles.lowerLineLight : ''}`}
+              >
                 {painting.location.location}
               </span>
             </div>
-
           </div>
         </figcaption>
       </figure>

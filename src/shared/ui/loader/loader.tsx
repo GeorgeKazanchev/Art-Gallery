@@ -2,7 +2,7 @@ import React from 'react';
 import * as styles from './loader.module.scss';
 
 type Props = {
-  isLight: boolean,
+  isLight: boolean;
 };
 
 export default function Loader({ isLight }: Props): React.ReactNode {

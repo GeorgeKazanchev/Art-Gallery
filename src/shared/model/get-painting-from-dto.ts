@@ -7,7 +7,12 @@ const getPaintingFromDto = (
   locations: Location[],
 ): Painting => {
   const {
-    id, name, imageUrl: imgUrl, created, authorId, locationId,
+    id,
+    name,
+    imageUrl: imgUrl,
+    created,
+    authorId,
+    locationId,
   } = painting;
 
   const author = authors.find((item) => item.id === authorId);

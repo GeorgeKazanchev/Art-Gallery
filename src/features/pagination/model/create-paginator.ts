@@ -1,10 +1,11 @@
 const { floor, min, max } = Math;
-const range = (low: number, high: number) => Array.from(
-  {
-    length: high - low,
-  },
-  (_, i) => i + low,
-);
+const range = (low: number, high: number) =>
+  Array.from(
+    {
+      length: high - low,
+    },
+    (_, i) => i + low,
+  );
 
 const getResArrayStartValues = (start: number, ellipsis: string) => {
   let values: (string | number)[];
@@ -30,18 +31,22 @@ const getResArrayEndValues = (end: number, total: number, ellipsis: string) => {
   return values;
 };
 
-const createPaginator = (count: number, ellipsis: string) => (total: number, curPage: number) => {
-  const start = max(1, min(curPage - floor((count - 3) / 2), total - count + 2));
-  const end = min(total, max(curPage + floor((count - 2) / 2), count - 1));
+const createPaginator =
+  (count: number, ellipsis: string) => (total: number, curPage: number) => {
+    const start = max(
+      1,
+      min(curPage - floor((count - 3) / 2), total - count + 2),
+    );
+    const end = min(total, max(curPage + floor((count - 2) / 2), count - 1));
 
-  const resArrayStartValues = getResArrayStartValues(start, ellipsis);
-  const resArrayEndValues = getResArrayEndValues(end, total, ellipsis);
+    const resArrayStartValues = getResArrayStartValues(start, ellipsis);
+    const resArrayEndValues = getResArrayEndValues(end, total, ellipsis);
 
-  return [
-    ...resArrayStartValues,
-    ...range(start, end + 1),
-    ...resArrayEndValues,
-  ];
-};
+    return [
+      ...resArrayStartValues,
+      ...range(start, end + 1),
+      ...resArrayEndValues,
+    ];
+  };
 
 export default createPaginator;

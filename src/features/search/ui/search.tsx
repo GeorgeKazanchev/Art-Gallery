@@ -6,11 +6,14 @@ import { useAppSelector } from '../../../shared/model/redux-hooks';
 import { selectTheme } from '../../../shared/model/theme-slice';
 
 type Props = {
-  searchQuery: string,
-  onSearchQueryChange: (searchQuery: string) => void,
+  searchQuery: string;
+  onSearchQueryChange: (searchQuery: string) => void;
 };
 
-export default function Search({ searchQuery, onSearchQueryChange }: Props): React.ReactNode {
+export default function Search({
+  searchQuery,
+  onSearchQueryChange,
+}: Props): React.ReactNode {
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
 
@@ -40,7 +43,7 @@ export default function Search({ searchQuery, onSearchQueryChange }: Props): Rea
         value=""
         aria-label="Clear a search field"
         onClick={() => {
-          onSearchQueryChange("");
+          onSearchQueryChange('');
         }}
       />
     </form>

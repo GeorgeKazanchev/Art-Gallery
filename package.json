@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite --port 5000",
     "build": "tsc -b && vite build",
-    "eslint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "preview": "vite preview --port 5000",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -29,8 +29,12 @@
     "eslint": "8.57.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-prettier": "5.2.1",
     "gh-pages": "6.2.0",
+    "prettier": "3.3.3",
+    "prettier-eslint": "16.3.0",
     "sass": "1.79.5",
     "typescript": "5.5.4",
     "vite": "5.4.8"

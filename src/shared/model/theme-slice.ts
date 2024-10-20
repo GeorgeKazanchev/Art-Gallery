@@ -4,7 +4,7 @@ import Theme from '../types/theme';
 import type { RootState } from '../../app/model/store';
 
 export type ThemeState = {
-  selectedTheme: Theme,
+  selectedTheme: Theme;
 };
 
 const initialState: ThemeState = {
