@@ -6,6 +6,7 @@ import PaintingsList from './paintings-list';
 import Pagination from '../../../features/pagination';
 import isThemeLight from '../../../shared/model/is-theme-light';
 import getPaintingFromDto from '../../../shared/model/get-painting-from-dto';
+import useSearchPaintings from '../model/use-search-paintings';
 import * as styles from './gallery.module.scss';
 
 import { useAppSelector } from '../../../shared/model/redux-hooks';
@@ -38,6 +39,7 @@ export default function Gallery(): React.ReactNode {
     isSuccess: isPaintingsLoaded,
     isError,
   } = useGetShownPaintingsQuery(currentPage);
+
   const { data: authors = [] } = useGetAuthorsQuery(
     isPaintingsLoaded ? null : skipToken,
   );
@@ -50,6 +52,7 @@ export default function Gallery(): React.ReactNode {
 
   const curTheme = useAppSelector(selectTheme);
   const isLight = isThemeLight(curTheme);
+  const isSearching = searchQuery.length > 0;
 
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
@@ -58,6 +61,8 @@ export default function Gallery(): React.ReactNode {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  const searchContent = useSearchPaintings(searchQuery);
 
   let content: React.ReactNode;
   if (isLoading) {
@@ -73,12 +78,18 @@ export default function Gallery(): React.ReactNode {
           searchQuery={searchQuery}
           onSearchQueryChange={handleSearchQueryChange}
         />
-        <PaintingsList paintings={paintings} />
-        <Pagination
-          pagesCount={totalPages.current}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
+        {isSearching ? (
+          searchContent
+        ) : (
+          <>
+            <PaintingsList paintings={paintings} />
+            <Pagination
+              pagesCount={totalPages.current}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          </>
+        )}
       </div>
     );
   } else if (isError) {
@@ -86,7 +97,7 @@ export default function Gallery(): React.ReactNode {
       <div className={styles.errorWrapper}>
         <Message
           message="Connection error"
-          description="Please try again later"
+          description="Please try again later."
           isLight={isLight}
         />
       </div>

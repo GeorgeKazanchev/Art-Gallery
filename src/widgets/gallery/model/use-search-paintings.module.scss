@@ -1,0 +1,18 @@
+@import '/src/shared/ui/variables.scss';
+
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  width: 48px;
+  height: 100vh;
+  margin: auto;
+}
+
+.error-wrapper {
+  padding-top: 60px;
+
+  @media (min-width: $tablet-wide-min-width) {
+    padding-top: 120px;
+    text-align: center;
+  }
+}

@@ -26,5 +26,6 @@ module.exports = {
         'state',
       ],
     }],
+    'react/require-default-props': ['off'],
   },
 };

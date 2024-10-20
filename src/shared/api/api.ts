@@ -55,6 +55,12 @@ export const api = createApi({
       getAllPaintings: builder.query<PaintingDto[], void>({
         query: () => ({ url: '/paintings', method: 'get' }),
       }),
+      getPaintingsBySearch: builder.query<PaintingDto[], string>({
+        query: (searchQuery = '') => ({
+          url: `/paintings?q=${searchQuery}`,
+          method: 'get',
+        }),
+      }),
       //  В следующих двух методах вторым типом указан "null", а не "void",
       //  как сказано в документации к RTK Query.
       //  Это сделано для того, чтобы TypeScript не ругался на "void",
@@ -72,6 +78,7 @@ export const api = createApi({
 export const {
   useGetShownPaintingsQuery,
   useGetAllPaintingsQuery,
+  useGetPaintingsBySearchQuery,
   useGetAuthorsQuery,
   useGetLocationsQuery,
 } = api;
