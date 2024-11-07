@@ -10,7 +10,7 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     }
   },
-  base: process.env.NODE_ENV === 'production' ? '/FWT-Test-Task/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/Art-Gallery/' : '/',
   build: {
     outDir: 'dist',
     rollupOptions: {

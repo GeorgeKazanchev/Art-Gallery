@@ -45,9 +45,8 @@ $caption-height-desktop: 82px;
 }
 
 .image {
-  display: block;
-  align-self: center;
   width: 100%;
+  object-fit: cover;
   transition: 0.3s transform;
 }
 
